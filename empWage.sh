@@ -2,17 +2,22 @@
 
 echo "Welcome To Employee Wage Computation On Master Branch"
 
-#Calculating Employee isPresent Or Not
+#Calculating Part Time Wage Of Employee
 
-isPresent=1
-randomCheck=$(( RANDOM%2 ))
+isPartTime=1
+isFullTime=2
+empWagePerHr=20
+randomCheck=$(( RANDOM%3 ))
 
-if [[ $isPresent -eq $randomCheck ]]
+if [[ $isFullTime -eq $randomCheck ]]
 then
-	empWagePerHr=20
-	empFullDayHrs=8
-	salary=$(( $empFullDayHrs*$empWagePerHr ))
+	empHrs=8
+elif [[ $isPartTime -eq $randomCheck ]]
+then
+	empHrs=4
 else
-	salary=0;
+	empHrs=0
 fi
+
+salry=$(( $empHrs*$empWagePerHr ))
 
