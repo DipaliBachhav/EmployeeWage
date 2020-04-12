@@ -2,21 +2,27 @@
 
 echo "Welcome To Employee Wage Computation On Master Branch"
 
-isPartTime=1
-isFullTime=2
-totalSalary=0
-numWorkingDays=20
-empWagePerHr=20
+#Constant For Program
+IS_Part_Time=1
+IS_Full_Time=2
+NUM_WORKING_DAYS=20
+MAX_HRS_MONTH=10
+EMP_WAGE_PER_HR=20
 
-for (( day=1; day<=$numWorkingDays; day++ ))
+#Variables For Program
+totalEmpHr=0
+totalWorkingDays=0
+
+while [[ $totalEmpHr -lt $MAX_HRS_MONTH && $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
 do
+(( totalWorkingDays++ ))
 empCheck=$(( RANDOM%3 ))
 case $empCheck in
-	$isFullTime)
+	$IS_Full_Time)
 		empHrs=8
 		;;
 
-	$isParTime)
+	$IS_Part_Time)
 		empHrs=4
 		;;
 
@@ -24,6 +30,7 @@ case $empCheck in
 		empHrs=0
 		;;
 esac
-	salary=$(( $empHrs*$empWagePerHr ))
-	totalSalary=$(( $totalSalary+$salary ))
+	totalEmpHr=$(( $totalEmpHr+$empHrs ))
 done
+
+totalSalary=$(( $totalEmpHr*$EMP_WAGE_PER_HR ))
